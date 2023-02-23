@@ -17,18 +17,22 @@ inquirer
   .prompt([
     {
       type: 'input',
-      message: 'Enter your project title:',
-      name: 'title',
+      message: 'Enter team member name:',
+      name: 'name',
     },
-    
-
-    // Generating the readme file using the generate Markdown function and fs.writeFile
+      {
+        type: 'list',
+        message: 'Select team member function:',
+        name: 'function',
+        choices: ['Engineer', 'Intern', 'Manager' ,]
+      },
   ])
   .then((response) => {
 
 //   const readme = generateMarkdown(response)
 
-fs.writeFile("READMEexample.md", readme, (err) => 
-err? console.error(err) : console.log("Readme created")
+
+fs.writeFile("team.html", readme, (err) => 
+err? console.error(err) : console.log("HTML created")
 )
  });
