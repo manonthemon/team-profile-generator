@@ -30,9 +30,10 @@ inquirer
   .then((response) => {
 
 //   const readme = generateMarkdown(response)
+const teamMember = `Team member name: ${response.name}
+Team member function: ${response.function}`;
 
-
-fs.writeFile("team.html", readme, (err) => 
-err? console.error(err) : console.log("HTML created")
+fs.writeFile("team.txt", teamMember, (err) => 
+err? console.error(err) : console.log("txt created")
 )
  });
