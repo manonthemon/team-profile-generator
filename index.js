@@ -45,13 +45,11 @@ inquirer
   ])
   .then((response) => {
 
-//   const readme = generateMarkdown(response)
-const teamMember = `Team member name: ${response.name}
-Team member function: ${response.function}`;
-
-fs.writeFile("team.txt", teamMember, (err) => 
-err? console.error(err) : console.log("txt created")
-)
- });
+    const ready = render(response)
+  
+  fs.writeFile("index.html", ready, (err) => 
+  err? console.error(err) : console.log("Readme created")
+  )
+   });
 
  // !INQUIRER TEST ENDS HERE
