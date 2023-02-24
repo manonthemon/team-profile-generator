@@ -38,18 +38,17 @@ inquirer
     },
       {
         type: 'list',
-        message: 'Select team member function:',
+        message: 'Wha type of team member do you want to add?',
         name: 'function',
-        choices: ['Engineer', 'Intern', 'Manager' ,]
+        choices: ['Engineer', 'Intern', 'Finish building the team' ,]
       },
   ])
   .then((response) => {
 
-    const ready = render(response)
-  
-  fs.writeFile("index.html", ready, (err) => 
-  err? console.error(err) : console.log("Readme created")
-  )
+//TODO FINISH THIS. Needs to create an array of objects with employees I think...
+  // fs.writeFile("index.html", readme, (err) => 
+  // err? console.error(err) : console.log("Readme created")
+  // )
    });
 
  // !INQUIRER TEST ENDS HERE
