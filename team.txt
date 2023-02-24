@@ -1,2 +1,2 @@
 Team member name: John
-Team member function: Intern
+Team member function: Manager

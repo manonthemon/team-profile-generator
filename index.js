@@ -18,8 +18,23 @@ inquirer
   .prompt([
     {
       type: 'input',
-      message: 'Enter team member name:',
+      message: "Enter the manager's name:",
       name: 'name',
+    },
+    {
+      type: 'input',
+      message: "Enter the manager's ID:",
+      name: 'id',
+    },
+    {
+      type: 'input',
+      message: "Enter the manager's email address:",
+      name: 'email',
+    },
+    {
+      type: 'input',
+      message: "Enter the manager's office number:",
+      name: 'officeNumber',
     },
       {
         type: 'list',
