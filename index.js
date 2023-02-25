@@ -146,11 +146,14 @@ const makeIntern = () => {
   })
 }
 
-
 const buildPage = () => {
   const myEmployees = []
-  testArray.push(new  Manager)
-  testArray.push(new Engineer)
-  testArray.push(new Intern)
-console.log(render(myEmployees))
+  myEmployees.push(new  Manager)
+  myEmployees.push(new Engineer)
+  myEmployees.push(new Intern)
+const html = render(myEmployees)
+fs.writeFile(outputPath, html, (err) => {
+  if (err) throw err;
+  console.log(`Team profile has been generated at ${outputPath}`);
+});
 }
