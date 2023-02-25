@@ -10,10 +10,11 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+const employeesArray = []
+
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-//!THIS IS JUST TO TEST INQUIRER
 inquirer
   .prompt([
     {
@@ -36,19 +37,120 @@ inquirer
       message: "Enter the manager's office number:",
       name: 'officeNumber',
     },
-      {
-        type: 'list',
-        message: 'Wha type of team member do you want to add?',
-        name: 'function',
-        choices: ['Engineer', 'Intern', 'Finish building the team' ,]
-      },
+
   ])
   .then((response) => {
+    const manager = {
+      name: response.name,
+      id: response.id,
+      email: response.email,
+      officeNumber: response.officeNumber,
+      role: 'Manager',
+    }
+    employeesArray.push(manager);
+    nextEmployee()
+  })
 
-//TODO FINISH THIS. Needs to create an array of objects with employees I think...
-  // fs.writeFile("index.html", readme, (err) => 
-  // err? console.error(err) : console.log("Readme created")
-  // )
-   });
+const nextEmployee = () => {
+  inquirer.prompt([
+    {
+      type: 'list',
+      message: 'Wha type of team member do you want to add?',
+      name: 'function',
+      choices: ['Engineer', 'Intern', 'Finish building the team',]
+    },
 
- // !INQUIRER TEST ENDS HERE
+  ]).then(response => {
+    if (response.function === 'Engineer') {
+      makeEngineer()
+    } else if (response.function === 'Intern') {
+      makeIntern()
+    } else {
+      buildPage()
+    }
+  })
+}
+
+const makeEngineer = () => {
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: "Enter the engineer's name:",
+      name: 'name',
+    },
+    {
+      type: 'input',
+      message: "Enter the engineer's ID:",
+      name: 'id',
+    },
+    {
+      type: 'input',
+      message: "Enter the engineer's email address:",
+      name: 'email',
+    },
+    {
+      type: 'input',
+      message: "Enter the engineer's GitHub username:",
+      name: 'github',
+    },
+
+  ])
+  .then((response) => {
+    const engineer = {
+      name: response.name,
+      id: response.id,
+      email: response.email,
+      github: response.github,
+      role: 'Engineer',
+    }
+    employeesArray.push(engineer);
+    nextEmployee()
+  })
+}
+
+
+const makeIntern = () => {
+  inquirer.prompt([
+    {
+      type: 'input',
+      message: "Enter the intern's name:",
+      name: 'name',
+    },
+    {
+      type: 'input',
+      message: "Enter the intern's ID:",
+      name: 'id',
+    },
+    {
+      type: 'input',
+      message: "Enter the intern's email address:",
+      name: 'email',
+    },
+    {
+      type: 'input',
+      message: "Enter the intern's GitHub school:",
+      name: 'school',
+    },
+
+  ])
+  .then((response) => {
+    const intern = {
+      name: response.name,
+      id: response.id,
+      email: response.email,
+      school: response.school,
+      role: 'Intern',
+    }
+    employeesArray.push(intern);
+    nextEmployee()
+  })
+}
+
+
+const buildPage = () => {
+  const myEmployees = []
+  testArray.push(new  Manager)
+  testArray.push(new Engineer)
+  testArray.push(new Intern)
+console.log(render(myEmployees))
+}
