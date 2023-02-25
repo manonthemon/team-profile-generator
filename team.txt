@@ -1,2 +1,0 @@
-Team member name: John
-Team member function: Manager

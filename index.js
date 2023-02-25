@@ -10,11 +10,11 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+//Array of employees objects (used later to render html)
 const employeesArray = []
 
-
-// First inquirer asks for info about manager class
-
+//MAKE MANAGER
+// First inquirer asks user for info about the manager class and creates a new manager objest. 
 inquirer
   .prompt([
     {
@@ -37,15 +37,15 @@ inquirer
       message: "Enter the manager's office number:",
       name: 'officeNumber',
     },
-
   ])
-  .then((response) => { //Then it creates a new manager with user responses and pushes it into emoloyesArray
+  .then((response) => { 
     const manager = new Manager(response.name, response.id, response.email, response.officeNumber)
     employeesArray.push(manager);
-    nextEmployee() //Calls the nextemployee function
+    nextEmployee() 
   })
 
-//next employee function asks user what type of employee to add and activates the respective function
+//NEXT EMPLOYEE
+// asks user what type of employee to add and activates the respective function.
 const nextEmployee = () => {
   inquirer.prompt([
     {
@@ -66,6 +66,7 @@ const nextEmployee = () => {
   })
 }
 
+//MAKE ENGINEER
 //builds engineer with user responses and pushes it into employees array
 const makeEngineer = () => {
   inquirer.prompt([
@@ -98,6 +99,7 @@ const makeEngineer = () => {
     })
 }
 
+//MAKE INTERN
 //builds new intern with user responses and pushes it into employees array
 const makeIntern = () => {
   inquirer.prompt([
@@ -121,7 +123,6 @@ const makeIntern = () => {
       message: "Enter the intern's GitHub school:",
       name: 'school',
     },
-
   ])
     .then((response) => {
       const intern = new Intern(response.name, response.id, response.email, response.school,)
