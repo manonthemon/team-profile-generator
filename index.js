@@ -142,18 +142,36 @@ const makeIntern = () => {
       role: 'Intern',
     }
     employeesArray.push(intern);
+    console.log(employeesArray);
     nextEmployee()
   })
 }
 
+// const buildPage = () => {
+//   const  employeesArray = []
+//   employeesArray.push(new Manager)
+//   employeesArray.push(new Engineer)
+//   employeesArray.push(new Intern)
+//   console.log( employeesArray);
+// const html = render(employeesArray)
+// fs.writeFile(outputPath, html, (err) => {
+//   if (err) throw err;
+//   console.log(`Team profile has been generated at ${outputPath}`);
+// });
+// }
+
 const buildPage = () => {
-  const myEmployees = []
-  myEmployees.push(new  Manager)
-  myEmployees.push(new Engineer)
-  myEmployees.push(new Intern)
-const html = render(myEmployees)
-fs.writeFile(outputPath, html, (err) => {
-  if (err) throw err;
-  console.log(`Team profile has been generated at ${outputPath}`);
-});
-}
+  const html = render(employeesArray.map(employee => {
+    if (employee.role === 'Manager') {
+      return new Manager(employee.name, employee.id, employee.email, employee.officeNumber);
+    } else if (employee.role === 'Engineer') {
+      return new Engineer(employee.name, employee.id, employee.email, employee.github);
+    } else if (employee.role === 'Intern') {
+      return new Intern(employee.name, employee.id, employee.email, employee.school);
+    }
+  }));
+  fs.writeFile(outputPath, html, (err) => {
+    if (err) throw err;
+    console.log(`Team profile has been generated at ${outputPath}`);
+  });
+};
