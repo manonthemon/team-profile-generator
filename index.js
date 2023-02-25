@@ -13,7 +13,7 @@ const render = require("./src/page-template.js");
 const employeesArray = []
 
 
-// TODO: Write Code to gather information about the development team members, and render the HTML file.
+// First inquirer asks for info about manager class
 
 inquirer
   .prompt([
@@ -39,7 +39,7 @@ inquirer
     },
 
   ])
-  .then((response) => {
+  .then((response) => { //Then it creates an manager object and pushes it into emoloyesArray
     const manager = {
       name: response.name,
       id: response.id,
@@ -48,9 +48,10 @@ inquirer
       role: 'Manager',
     }
     employeesArray.push(manager);
-    nextEmployee()
+    nextEmployee() //Calls the nextemployee function
   })
 
+  //next employee function asks user what type of employee to add and activates the respective function
 const nextEmployee = () => {
   inquirer.prompt([
     {
@@ -71,6 +72,7 @@ const nextEmployee = () => {
   })
 }
 
+//build engineer object and pushes it into employees array
 const makeEngineer = () => {
   inquirer.prompt([
     {
@@ -108,7 +110,7 @@ const makeEngineer = () => {
   })
 }
 
-
+//build intern object and pushes it into employees array
 const makeIntern = () => {
   inquirer.prompt([
     {
@@ -142,24 +144,12 @@ const makeIntern = () => {
       role: 'Intern',
     }
     employeesArray.push(intern);
-    console.log(employeesArray);
     nextEmployee()
   })
 }
 
-// const buildPage = () => {
-//   const  employeesArray = []
-//   employeesArray.push(new Manager)
-//   employeesArray.push(new Engineer)
-//   employeesArray.push(new Intern)
-//   console.log( employeesArray);
-// const html = render(employeesArray)
-// fs.writeFile(outputPath, html, (err) => {
-//   if (err) throw err;
-//   console.log(`Team profile has been generated at ${outputPath}`);
-// });
-// }
 
+//This builds the html file using info form user
 const buildPage = () => {
   const html = render(employeesArray.map(employee => {
     if (employee.role === 'Manager') {
@@ -172,6 +162,6 @@ const buildPage = () => {
   }));
   fs.writeFile(outputPath, html, (err) => {
     if (err) throw err;
-    console.log(`Team profile has been generated at ${outputPath}`);
+    console.log(`Generated team.html`);
   });
 };
