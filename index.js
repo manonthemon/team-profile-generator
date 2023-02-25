@@ -39,19 +39,13 @@ inquirer
     },
 
   ])
-  .then((response) => { //Then it creates an manager object and pushes it into emoloyesArray
-    const manager = {
-      name: response.name,
-      id: response.id,
-      email: response.email,
-      officeNumber: response.officeNumber,
-      role: 'Manager',
-    }
+  .then((response) => { //Then it creates a new manager with user responses and pushes it into emoloyesArray
+    const manager = new Manager(response.name, response.id, response.email, response.officeNumber)
     employeesArray.push(manager);
     nextEmployee() //Calls the nextemployee function
   })
 
-  //next employee function asks user what type of employee to add and activates the respective function
+//next employee function asks user what type of employee to add and activates the respective function
 const nextEmployee = () => {
   inquirer.prompt([
     {
@@ -72,7 +66,7 @@ const nextEmployee = () => {
   })
 }
 
-//build engineer object and pushes it into employees array
+//builds engineer with user responses and pushes it into employees array
 const makeEngineer = () => {
   inquirer.prompt([
     {
@@ -97,20 +91,14 @@ const makeEngineer = () => {
     },
 
   ])
-  .then((response) => {
-    const engineer = {
-      name: response.name,
-      id: response.id,
-      email: response.email,
-      github: response.github,
-      role: 'Engineer',
-    }
-    employeesArray.push(engineer);
-    nextEmployee()
-  })
+    .then((response) => {
+      const engineer = new Engineer(response.name, response.id, response.email, response.github)
+      employeesArray.push(engineer);
+      nextEmployee()
+    })
 }
 
-//build intern object and pushes it into employees array
+//builds new intern with user responses and pushes it into employees array
 const makeIntern = () => {
   inquirer.prompt([
     {
@@ -135,31 +123,16 @@ const makeIntern = () => {
     },
 
   ])
-  .then((response) => {
-    const intern = {
-      name: response.name,
-      id: response.id,
-      email: response.email,
-      school: response.school,
-      role: 'Intern',
-    }
-    employeesArray.push(intern);
-    nextEmployee()
-  })
+    .then((response) => {
+      const intern = new Intern(response.name, response.id, response.email, response.school,)
+      employeesArray.push(intern);
+      nextEmployee()
+    })
 }
 
-
-//This builds the html file using info form user
+//This builds the html file using stored in employeesArray
 const buildPage = () => {
-  const html = render(employeesArray.map(employee => {
-    if (employee.role === 'Manager') {
-      return new Manager(employee.name, employee.id, employee.email, employee.officeNumber);
-    } else if (employee.role === 'Engineer') {
-      return new Engineer(employee.name, employee.id, employee.email, employee.github);
-    } else if (employee.role === 'Intern') {
-      return new Intern(employee.name, employee.id, employee.email, employee.school);
-    }
-  }));
+  const html = render(employeesArray)
   fs.writeFile(outputPath, html, (err) => {
     if (err) throw err;
     console.log(`Generated team.html`);
