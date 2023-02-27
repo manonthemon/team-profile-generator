@@ -14,7 +14,7 @@ const render = require("./src/page-template.js");
 const employeesArray = []
 
 //MAKE MANAGER
-// First inquirer asks user for info about the manager class and creates a new manager objest. 
+// First inquirer asks user for info about the manager class and creates a new manager object. 
 inquirer
   .prompt([
     {
@@ -44,7 +44,7 @@ inquirer
     nextEmployee() 
   })
 
-//NEXT EMPLOYEE
+//NEXT EMPLOYEE MENU
 // asks user what type of employee to add and activates the respective function.
 const nextEmployee = () => {
   inquirer.prompt([
@@ -120,7 +120,7 @@ const makeIntern = () => {
     },
     {
       type: 'input',
-      message: "Enter the intern's GitHub school:",
+      message: "Enter the intern's school:",
       name: 'school',
     },
   ])
@@ -131,6 +131,7 @@ const makeIntern = () => {
     })
 }
 
+//BUILD HTML
 //This builds the html file using stored in employeesArray
 const buildPage = () => {
   const html = render(employeesArray)
