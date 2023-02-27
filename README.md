@@ -8,7 +8,7 @@
   ## Description 
   This is a simple, command line based application generating company employees profiles. It allows users to quickly generate a HTML page with profiles containing basic information about employees such as their names, ID numbers, roles, email addresses and other. Users can select from a list of three different job roles: manager, engineer and intern. 
   
-  I've built this application to complete the weekly challenge during the 13th week of edX front-end development bootcamp. Developing this application helped me practice the following areas of front-end developement:
+  I've built this application to complete the weekly challenge during the 12th week of edX front-end development bootcamp. Developing this application helped me practice the following areas of front-end developement:
 
   - Using node.js to dynamically generate files.
   - Using tests to examine my application.
